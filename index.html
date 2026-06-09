@@ -12,226 +12,241 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
+            align-items: flex-start;
+            padding: 40px 20px;
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: #1e293b;
+            border-radius: 16px;
+            border: 1px solid #334155;
             padding: 40px;
             width: 100%;
-            max-width: 700px;
-            animation: slideUp 0.6s ease-out;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            max-width: 680px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .header {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #334155;
         }
 
         .header h1 {
-            color: #333;
-            font-size: 2.2rem;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: #f8fafc;
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            margin-bottom: 6px;
         }
 
         .header p {
-            color: #666;
-            font-size: 1rem;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            font-weight: 400;
         }
 
         .subject-row {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 15px;
+            gap: 16px;
             align-items: center;
-            padding: 15px;
-            margin-bottom: 12px;
-            background: #f8f9fa;
-            border-radius: 12px;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            padding: 16px 20px;
+            margin-bottom: 10px;
+            background: #0f172a;
+            border-radius: 10px;
+            border: 1px solid #1e293b;
+            transition: all 0.2s ease;
         }
 
         .subject-row:hover {
-            border-color: #667eea;
-            transform: translateX(5px);
+            border-color: #475569;
+            background: #1e293b;
         }
 
         .subject-name {
-            font-weight: 600;
-            color: #333;
-            font-size: 0.95rem;
+            font-weight: 500;
+            color: #e2e8f0;
+            font-size: 0.92rem;
+            letter-spacing: -0.01em;
         }
 
         .credit-badge {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
+            background: #1e3a5f;
+            color: #7dd3fc;
             padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
             font-weight: 600;
             text-align: center;
+            border: 1px solid #1e40af;
         }
 
         select {
-            padding: 10px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 0.95rem;
-            background: white;
-            color: #333;
+            padding: 10px 14px;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            background: #0f172a;
+            color: #e2e8f0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             outline: none;
             width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            padding-right: 36px;
         }
 
         select:focus {
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
         }
 
         select:hover {
-            border-color: #667eea;
+            border-color: #475569;
         }
 
-        .result-card {
-            margin-top: 30px;
-            padding: 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            color: white;
-            text-align: center;
-            display: none;
-            animation: fadeIn 0.5s ease;
+        select option {
+            background: #1e293b;
+            color: #e2e8f0;
         }
 
-        .result-card.show {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .sgpa-value {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .sgpa-label {
-            font-size: 1.1rem;
-            opacity: 0.9;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .grade-info {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            opacity: 0.85;
+        select option:first-child {
+            color: #64748b;
         }
 
         .btn-calculate {
             width: 100%;
-            padding: 15px;
-            margin-top: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 14px;
+            margin-top: 24px;
+            background: #2563eb;
+            color: #ffffff;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            transition: all 0.2s ease;
+            letter-spacing: 0.01em;
         }
 
         .btn-calculate:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            background: #1d4ed8;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 25px -5px rgba(37, 99, 235, 0.3);
         }
 
         .btn-calculate:active {
             transform: translateY(0);
         }
 
+        .result-card {
+            margin-top: 28px;
+            padding: 28px;
+            background: #0f172a;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            text-align: center;
+            display: none;
+        }
+
+        .result-card.show {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sgpa-label {
+            font-size: 0.85rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .sgpa-value {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #f8fafc;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        .grade-info {
+            margin-top: 12px;
+            font-size: 0.9rem;
+            color: #7dd3fc;
+            font-weight: 500;
+        }
+
         .breakdown {
             margin-top: 20px;
             padding: 20px;
-            background: #f8f9fa;
-            border-radius: 12px;
+            background: #0f172a;
+            border-radius: 10px;
+            border: 1px solid #334155;
             display: none;
         }
 
         .breakdown.show {
             display: block;
-            animation: fadeIn 0.5s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         .breakdown h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
+            color: #e2e8f0;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
         }
 
         .breakdown-row {
             display: flex;
             justify-content: space-between;
             padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-            font-size: 0.9rem;
+            border-bottom: 1px solid #1e293b;
+            font-size: 0.85rem;
+            color: #cbd5e1;
         }
 
         .breakdown-row:last-child {
             border-bottom: none;
-            font-weight: 700;
-            color: #667eea;
-            font-size: 1rem;
-            margin-top: 5px;
+            font-weight: 600;
+            color: #7dd3fc;
+            font-size: 0.9rem;
+            margin-top: 6px;
             padding-top: 12px;
-            border-top: 2px solid #667eea;
+            border-top: 1px solid #334155;
         }
 
         .grade-scale {
-            margin-top: 25px;
+            margin-top: 28px;
             padding: 20px;
-            background: #f0f4ff;
-            border-radius: 12px;
-            border-left: 4px solid #667eea;
+            background: #0f172a;
+            border-radius: 10px;
+            border: 1px solid #334155;
         }
 
         .grade-scale h3 {
-            color: #333;
-            margin-bottom: 12px;
-            font-size: 1rem;
+            color: #e2e8f0;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+            font-weight: 600;
         }
 
         .grade-scale-grid {
@@ -243,20 +258,38 @@
         .grade-item {
             display: flex;
             justify-content: space-between;
-            padding: 6px 12px;
-            background: white;
-            border-radius: 8px;
+            padding: 8px 14px;
+            background: #1e293b;
+            border-radius: 6px;
             font-size: 0.85rem;
+            border: 1px solid #334155;
         }
 
         .grade-item span:first-child {
             font-weight: 600;
-            color: #667eea;
+            color: #7dd3fc;
+        }
+
+        .grade-item span:last-child {
+            color: #94a3b8;
+        }
+
+        .error-msg {
+            color: #f87171;
+            font-size: 0.85rem;
+            margin-top: 12px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+        }
+
+        .error-msg.show {
+            display: block;
         }
 
         @media (max-width: 600px) {
             .container {
-                padding: 25px;
+                padding: 24px;
             }
             
             .subject-row {
@@ -265,7 +298,7 @@
             }
             
             .header h1 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
             
             .sgpa-value {
@@ -281,49 +314,50 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>📊 SGPA Calculator</h1>
-            <p>Select grades for each subject to calculate your SGPA</p>
+            <h1>SGPA Calculator</h1>
+            <p>Select your grades to calculate Semester Grade Point Average</p>
         </div>
 
         <div id="subjectsContainer"></div>
 
+        <div id="errorMsg" class="error-msg">Please select grades for all subjects</div>
+
         <button class="btn-calculate" onclick="calculateSGPA()">Calculate SGPA</button>
 
         <div id="resultCard" class="result-card">
-            <div class="sgpa-label">Your SGPA</div>
+            <div class="sgpa-label">Semester GPA</div>
             <div class="sgpa-value" id="sgpaValue">0.00</div>
             <div class="grade-info" id="gradeInfo"></div>
         </div>
 
         <div id="breakdown" class="breakdown">
-            <h3>📋 Calculation Breakdown</h3>
+            <h3>Calculation Breakdown</h3>
             <div id="breakdownContent"></div>
         </div>
 
         <div class="grade-scale">
-            <h3>🎯 Grade Point Scale</h3>
+            <h3>Grade Point Scale</h3>
             <div class="grade-scale-grid">
-                <div class="grade-item"><span>Ex</span><span>10 pts</span></div>
-                <div class="grade-item"><span>A</span><span>9 pts</span></div>
-                <div class="grade-item"><span>B</span><span>8 pts</span></div>
-                <div class="grade-item"><span>C</span><span>7 pts</span></div>
-                <div class="grade-item"><span>D</span><span>6 pts</span></div>
-                <div class="grade-item"><span>E</span><span>5 pts</span></div>
+                <div class="grade-item"><span>Ex</span><span>10 points</span></div>
+                <div class="grade-item"><span>A</span><span>9 points</span></div>
+                <div class="grade-item"><span>B</span><span>8 points</span></div>
+                <div class="grade-item"><span>C</span><span>7 points</span></div>
+                <div class="grade-item"><span>D</span><span>6 points</span></div>
+                <div class="grade-item"><span>E</span><span>5 points</span></div>
             </div>
         </div>
     </div>
 
     <script>
-        // Subject data: name and credits
         const subjects = [
             { name: "Cryptography", credits: 4 },
             { name: "Machine Learning (ML)", credits: 4 },
             { name: "Deep Learning / NPTEL", credits: 3 },
             { name: "OOD Java / NPTEL", credits: 3 },
-            { name: "Mini Project", credits: 3 }
+            { name: "Mini Project", credits: 3 },
+            { name: "English Lab", credits: 1.5 }
         ];
 
-        // Grade points mapping
         const gradePoints = {
             "Ex": 10,
             "A": 9,
@@ -333,7 +367,6 @@
             "E": 5
         };
 
-        // Initialize the calculator
         function initCalculator() {
             const container = document.getElementById('subjectsContainer');
             
@@ -345,24 +378,24 @@
                     <div class="credit-badge">${subject.credits} Credits</div>
                     <select id="grade-${index}" required>
                         <option value="" disabled selected>Select Grade</option>
-                        <option value="Ex">Ex (10)</option>
-                        <option value="A">A (9)</option>
-                        <option value="B">B (8)</option>
-                        <option value="C">C (7)</option>
-                        <option value="D">D (6)</option>
-                        <option value="E">E (5)</option>
+                        <option value="Ex">Ex</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                        <option value="D">D</option>
+                        <option value="E">E</option>
                     </select>
                 `;
                 container.appendChild(row);
             });
         }
 
-        // Calculate SGPA
         function calculateSGPA() {
             let totalCredits = 0;
             let totalGradePoints = 0;
             let breakdownHTML = '';
             let allSelected = true;
+            const errorMsg = document.getElementById('errorMsg');
 
             subjects.forEach((subject, index) => {
                 const gradeSelect = document.getElementById(`grade-${index}`);
@@ -370,9 +403,9 @@
 
                 if (!grade) {
                     allSelected = false;
-                    gradeSelect.style.borderColor = '#e74c3c';
+                    gradeSelect.style.borderColor = '#ef4444';
                     setTimeout(() => {
-                        gradeSelect.style.borderColor = '#e0e0e0';
+                        gradeSelect.style.borderColor = '#334155';
                     }, 2000);
                     return;
                 }
@@ -385,49 +418,45 @@
 
                 breakdownHTML += `
                     <div class="breakdown-row">
-                        <span>${subject.name} (${grade})</span>
-                        <span>${points} × ${subject.credits} = ${weightedPoints}</span>
+                        <span>${subject.name} <span style="color:#64748b">(${grade})</span></span>
+                        <span>${points} × ${subject.credits} = ${weightedPoints.toFixed(1).replace('.0', '')}</span>
                     </div>
                 `;
             });
 
             if (!allSelected) {
-                alert('Please select grades for all subjects!');
+                errorMsg.classList.add('show');
+                setTimeout(() => errorMsg.classList.remove('show'), 3000);
                 return;
             }
 
             const sgpa = totalGradePoints / totalCredits;
 
-            // Display result
             document.getElementById('sgpaValue').textContent = sgpa.toFixed(2);
             
             let gradeText = '';
-            if (sgpa >= 9) gradeText = '🌟 Outstanding Performance!';
-            else if (sgpa >= 8) gradeText = '⭐ Excellent Performance!';
-            else if (sgpa >= 7) gradeText = '👍 Good Performance!';
-            else if (sgpa >= 6) gradeText = '✅ Satisfactory Performance';
-            else gradeText = '💪 Keep Improving!';
+            if (sgpa >= 9) gradeText = 'Outstanding Performance';
+            else if (sgpa >= 8) gradeText = 'Excellent Performance';
+            else if (sgpa >= 7) gradeText = 'Good Performance';
+            else if (sgpa >= 6) gradeText = 'Satisfactory Performance';
+            else gradeText = 'Needs Improvement';
             
             document.getElementById('gradeInfo').textContent = gradeText;
 
-            // Show result card
             document.getElementById('resultCard').classList.add('show');
 
-            // Show breakdown
             breakdownHTML += `
                 <div class="breakdown-row">
                     <span>Total</span>
-                    <span>${totalGradePoints} / ${totalCredits} = ${sgpa.toFixed(2)}</span>
+                    <span>${totalGradePoints.toFixed(1).replace('.0', '')} / ${totalCredits} = ${sgpa.toFixed(2)}</span>
                 </div>
             `;
             document.getElementById('breakdownContent').innerHTML = breakdownHTML;
             document.getElementById('breakdown').classList.add('show');
 
-            // Scroll to result
             document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         }
 
-        // Initialize on load
         window.onload = initCalculator;
     </script>
 </body>
