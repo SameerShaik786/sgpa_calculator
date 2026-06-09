@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 700px;
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .subject-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 15px;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 12px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .subject-row:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .subject-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .credit-badge {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        select {
+            padding: 10px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            background: white;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            outline: none;
+            width: 100%;
+        }
+
+        select:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        select:hover {
+            border-color: #667eea;
+        }
+
+        .result-card {
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .result-card.show {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .sgpa-value {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 10px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .sgpa-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .grade-info {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            opacity: 0.85;
+        }
+
+        .btn-calculate {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+
+        .breakdown {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .breakdown.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .breakdown h3 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .breakdown-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            font-size: 0.9rem;
+        }
+
+        .breakdown-row:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1rem;
+            margin-top: 5px;
+            padding-top: 12px;
+            border-top: 2px solid #667eea;
+        }
+
+        .grade-scale {
+            margin-top: 25px;
+            padding: 20px;
+            background: #f0f4ff;
+            border-radius: 12px;
+            border-left: 4px solid #667eea;
+        }
+
+        .grade-scale h3 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .grade-scale-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .grade-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 12px;
+            background: white;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+
+        .grade-item span:first-child {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .subject-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .sgpa-value {
+                font-size: 2.5rem;
+            }
+            
+            .grade-scale-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 SGPA Calculator</h1>
+            <p>Select grades for each subject to calculate your SGPA</p>
+        </div>
+
+        <div id="subjectsContainer"></div>
+
+        <button class="btn-calculate" onclick="calculateSGPA()">Calculate SGPA</button>
+
+        <div id="resultCard" class="result-card">
+            <div class="sgpa-label">Your SGPA</div>
+            <div class="sgpa-value" id="sgpaValue">0.00</div>
+            <div class="grade-info" id="gradeInfo"></div>
+        </div>
+
+        <div id="breakdown" class="breakdown">
+            <h3>📋 Calculation Breakdown</h3>
+            <div id="breakdownContent"></div>
+        </div>
+
+        <div class="grade-scale">
+            <h3>🎯 Grade Point Scale</h3>
+            <div class="grade-scale-grid">
+                <div class="grade-item"><span>Ex</span><span>10 pts</span></div>
+                <div class="grade-item"><span>A</span><span>9 pts</span></div>
+                <div class="grade-item"><span>B</span><span>8 pts</span></div>
+                <div class="grade-item"><span>C</span><span>7 pts</span></div>
+                <div class="grade-item"><span>D</span><span>6 pts</span></div>
+                <div class="grade-item"><span>E</span><span>5 pts</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Subject data: name and credits
+        const subjects = [
+            { name: "Cryptography", credits: 4 },
+            { name: "Machine Learning (ML)", credits: 4 },
+            { name: "Deep Learning / NPTEL", credits: 3 },
+            { name: "OOD Java / NPTEL", credits: 3 },
+            { name: "Mini Project", credits: 3 }
+        ];
+
+        // Grade points mapping
+        const gradePoints = {
+            "Ex": 10,
+            "A": 9,
+            "B": 8,
+            "C": 7,
+            "D": 6,
+            "E": 5
+        };
+
+        // Initialize the calculator
+        function initCalculator() {
+            const container = document.getElementById('subjectsContainer');
+            
+            subjects.forEach((subject, index) => {
+                const row = document.createElement('div');
+                row.className = 'subject-row';
+                row.innerHTML = `
+                    <div class="subject-name">${subject.name}</div>
+                    <div class="credit-badge">${subject.credits} Credits</div>
+                    <select id="grade-${index}" required>
+                        <option value="" disabled selected>Select Grade</option>
+                        <option value="Ex">Ex (10)</option>
+                        <option value="A">A (9)</option>
+                        <option value="B">B (8)</option>
+                        <option value="C">C (7)</option>
+                        <option value="D">D (6)</option>
+                        <option value="E">E (5)</option>
+                    </select>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        // Calculate SGPA
+        function calculateSGPA() {
+            let totalCredits = 0;
+            let totalGradePoints = 0;
+            let breakdownHTML = '';
+            let allSelected = true;
+
+            subjects.forEach((subject, index) => {
+                const gradeSelect = document.getElementById(`grade-${index}`);
+                const grade = gradeSelect.value;
+
+                if (!grade) {
+                    allSelected = false;
+                    gradeSelect.style.borderColor = '#e74c3c';
+                    setTimeout(() => {
+                        gradeSelect.style.borderColor = '#e0e0e0';
+                    }, 2000);
+                    return;
+                }
+
+                const points = gradePoints[grade];
+                const weightedPoints = points * subject.credits;
+                
+                totalCredits += subject.credits;
+                totalGradePoints += weightedPoints;
+
+                breakdownHTML += `
+                    <div class="breakdown-row">
+                        <span>${subject.name} (${grade})</span>
+                        <span>${points} × ${subject.credits} = ${weightedPoints}</span>
+                    </div>
+                `;
+            });
+
+            if (!allSelected) {
+                alert('Please select grades for all subjects!');
+                return;
+            }
+
+            const sgpa = totalGradePoints / totalCredits;
+
+            // Display result
+            document.getElementById('sgpaValue').textContent = sgpa.toFixed(2);
+            
+            let gradeText = '';
+            if (sgpa >= 9) gradeText = '🌟 Outstanding Performance!';
+            else if (sgpa >= 8) gradeText = '⭐ Excellent Performance!';
+            else if (sgpa >= 7) gradeText = '👍 Good Performance!';
+            else if (sgpa >= 6) gradeText = '✅ Satisfactory Performance';
+            else gradeText = '💪 Keep Improving!';
+            
+            document.getElementById('gradeInfo').textContent = gradeText;
+
+            // Show result card
+            document.getElementById('resultCard').classList.add('show');
+
+            // Show breakdown
+            breakdownHTML += `
+                <div class="breakdown-row">
+                    <span>Total</span>
+                    <span>${totalGradePoints} / ${totalCredits} = ${sgpa.toFixed(2)}</span>
+                </div>
+            `;
+            document.getElementById('breakdownContent').innerHTML = breakdownHTML;
+            document.getElementById('breakdown').classList.add('show');
+
+            // Scroll to result
+            document.getElementById('resultCard').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        // Initialize on load
+        window.onload = initCalculator;
+    </script>
+</body>
+</html>
